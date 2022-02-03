@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Add Trail</title>
+</head>
+<body>
+    <a href="/">Home</a>
+    {% if 'user_id' in session %}
+        <a href="/logout">Logout</a> 
+        {% else %}
+        <a href="/login">Login</a> 
+    {% endif %}
+
+    
+    <h1>Add a Trail:</h1>
+    <form action="/create/trail" method="post">
+        <div class="mb-3 mt-3">
+            <label for="name" class="form-label">Trail Name:</label>
+            <input type="text" class="form-control" id="name"  name="name">
+        </div>
+
+        <div class="mb-3 mt-3">
+            <label for="location" class="form-label">Location:</label>
+            <input type="text" class="form-control" id="location" name="location">
+        </div>
+
+
+        <!-- <div class="mb-3 mt-3">
+            <label for="coordinates" class="form-label">Coordinates:</label>
+            <input type="text" class="form-control" id="coordinates"  name="coordinates">
+        </div> -->
+
+        <div class="mb-3 mt-3">
+            <label for="type" class="form-label">Type of Trail:</label>
+            <select class="form-select" id="type"  name="type">
+                <option value='out_and_back'>Out-and-Back</option>
+                <option value='loop'>Loop</option>
+                <option value='point_to_point'>Point-to-point</option>
+            </select>
+        </div>
+
+        <div class="mb-3 mt-3">
+            <label for="length" class="form-label">Length (miles):</label>
+            <input type="text" class="form-control" id="length"  name="length">
+        </div>
+
+        <div class="mb-3 mt-3">
+            <label for="elevation_gain" class="form-label">Elevation Gain (feet):</label>
+            <input type="text" class="form-control" id="elevation_gain"  name="elevation_gain">
+        </div>
+
+        <label for="time" class="form-label">Are dogs allowed?</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" id="yes" name="dog_friendly" value="1" checked>Yes
+            <label class="form-check-label" for="1"></label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" id="no" name="dog_friendly" value="0">No
+            <label class="form-check-label" for="0"></label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+</html>
