@@ -38,28 +38,46 @@
 </div>
 <div>
     <main class="form-signin text-center">
-        <form action="/login/user" method="post">
+        <form action="/save/user" method="post">
             <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="Go Explore Logo" style="width:300px;">
-            <h4 class="mb-3 fw-normal text-light">Please Sign In</h4>
+            <h4 class="mb-3 fw-normal text-light">Please Input Information</h4>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="first_name" placeholder="First Name" name="first_name">
+                <label for="floatingInput">First Name</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="last_name" placeholder="last_name" name="last_name">
+                <label for="floatingInput">Last Name</label>
+            </div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="email" placeholder="Email Address" name="email">
                 <label for="email">Email Address</label>
             </div>
             <div class="form-floating">
                 <input type="password" class="form-control" id="password" placeholder="Password" name="password">
-                <label for="floatingPassword">Password</label>
+                <label for="password">Password</label>
             </div>
-            {% for message in get_flashed_messages(category_filter=['err_users_password_login']) %}
-                <p class="text-danger">{{ message }}</p>
-            {% endfor %} 
-            {% for message in get_flashed_messages(category_filter=['err_users_email_login']) %}
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="confirm_password">
+                <label for="password">Confirm Password</label>
+            </div>
+            <br>
+            {% for message in get_flashed_messages(category_filter=['err_users_first_name']) %}
                 <p class="text-danger">{{ message }}</p>
             {% endfor %}
-            <br>
-            <button class="w-100 btn btn-lg btn-light text-success" type="submit">Login</button>
+            {% for message in get_flashed_messages(category_filter=['err_users_last_name']) %}
+                <p class="text-danger">{{ message }}</p>
+            {% endfor %} 
+            {% for message in get_flashed_messages(category_filter=['err_users_email']) %}
+                <p class="text-danger">{{ message }}</p>
+            {% endfor %}
+            {% for message in get_flashed_messages(category_filter=['err_users_password']) %}
+                <p class="text-danger">{{ message }}</p>
+            {% endfor %}
+            <button class="w-100 btn btn-lg btn-light text-success" type="submit">Register</button>
         </form>
         <br>
-        <p class="text-light">Not a member? <a href="/register" class="text-light">Register</a></p> 
+        <p class="text-light">Already a member? <a href="/login" class="text-light">Login</a></p> 
     </main>
 </div> 
 

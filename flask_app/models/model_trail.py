@@ -25,7 +25,7 @@ class Trail:
     
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM trails;"
+        query = "SELECT * FROM trails ORDER BY name;;"
         results = connectToMySQL(DATABASE).query_db(query)
         if results:
             all_trails = []

@@ -53,7 +53,7 @@ class User:
             flash('First name can only contain letters', 'err_users_first_name')
 
         if len(data['last_name']) < 2:
-            flash('Last name must be contain at least 2 characters.', 'err_users_last_name')
+            flash('Last name must contain at least 2 characters.', 'err_users_last_name')
             is_valid = False
         if not NAME_REGEX.match(data['last_name']) and len(data['last_name']) >= 1:
             flash('Last name can only contain letters.', 'err_users_last_name')
@@ -70,7 +70,7 @@ class User:
         if not PASSWORD_REGEX.match(data['password']):
             flash("Password must be at least 8 characters in length and contain at least one uppcase letter, one lowercase letter, one number, and one special character.", 'err_users_password')
             is_valid = False
-        if (data['password']) != (data['confirm_password']):
+        elif (data['password']) != (data['confirm_password']):
             flash("Passwords do not match. Please try again.", 'err_users_password')
             is_valid = False
         return is_valid

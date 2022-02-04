@@ -42,7 +42,6 @@ def update_review(id):
     model_review.Review.update_one(data)
     return redirect(url_for('view_trail', id=request.form['trail_id']))
 
-
 @app.route('/delete/review/<int:id>', methods=['post'])
 def delete_review(id):
     if 'user_id' not in session:

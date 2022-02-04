@@ -9,6 +9,12 @@ def login_page():
         return redirect('/')
     return render_template('login.html')
 
+@app.route('/register')
+def register_page():
+    if 'user_id' in session:
+        return redirect('/')
+    return render_template('register.html')
+
 @app.route('/logout')
 def logout():
     del session['user_id']
@@ -17,7 +23,7 @@ def logout():
 @app.route('/save/user', methods = ['post'])
 def create_user():
     if not model_user.User.validate_registration(request.form):
-        return redirect('/login') 
+        return redirect('/register') 
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
     data = {
         **request.form,

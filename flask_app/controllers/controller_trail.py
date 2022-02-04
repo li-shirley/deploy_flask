@@ -53,10 +53,13 @@ def update_trail(id):
     model_trail.Trail.update_one(data)
     return redirect('/')
 
-
 @app.route('/delete/trail/<int:id>')
 def delete_trail(id):
     if 'user_id' not in session:
         return redirect('/')
     model_trail.Trail.delete_one({'id' : id})
     return redirect('/')
+
+@app.route('/coming-soon')
+def coming_soon():
+    return render_template('coming-soon.html')
