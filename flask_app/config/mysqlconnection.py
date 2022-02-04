@@ -1,9 +1,9 @@
-import pymysql.cursors
+import pymysql.cursors, os
 class MySQLConnection:
     def __init__(self, db):
-        connection = pymysql.connect(host = 'localhost',
-                                    user = 'root', 
-                                    password = 'rootroot', 
+        connection = pymysql.connect(host = 'hikeapp.ct2mgktebkda.us-west-2.rds.amazonaws.com',
+                                    user = 'hikeappadmin', 
+                                    password = os.environ.get('DB_PASSWORD_KEY'), 
                                     db = db,
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,
