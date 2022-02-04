@@ -8,71 +8,101 @@
     <title>Edit Review</title>
 </head>
 <body>
-    <a href="/">Home</a>
-    {% if 'user_id' in session %}
-        <a href="/logout">Logout</a> 
-        {% else %}
-        <a href="/login">Login</a> 
-    {% endif %}
-
-    <a href="/trail/{{review.trail_id}}">Back to trail overview</a>     
-    <h1>Edit Review for {{ review.trail.name }}:</h1>
-
-    <form action="/delete/review/{{review.id}}" method="post">
-        <input type="hidden" name="trail_id" value="{{ review.trail_id }}">
-    <button type="submit" class="btn btn-primary">Delete Review</button>
-    </form>
-    
-    <form action="/update/review/{{ review.id }}" method="post">
-
-        <div class="mb-3 mt-3">
-            <label for="hiked_at" class="form-label">Date of Hike:</label>
-            <input type="date" class="form-control" id="hiked_at" name="hiked_at" value="{{ review.hiked_at }}">
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="Go Explore Logo" style="width:150px;"> 
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a href="/coming-soon" class="nav-link">About</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a href="/coming-soon" class="nav-link">Donate</a> 
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a> 
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <div class="mb-3 mt-3">
-            <label for="description" class="form-label">Description:</label>
-            <input type="text" class="form-control" id="description" name="description" value="{{ review.description }}">
+    <div class="container">
+        <div class="py-5 text-center">
+            <img src="{{ url_for('static', filename='img/logo-bw.jpeg') }}" alt="Go Explore Logo" style="width:300px; margin:20px;">
+            <h2>Edit Review for {{ review.trail.name }}</h2>
         </div>
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <form action="/update/review/{{ review.id }}" method="post">
 
-        <div class="mb-3 mt-3">
-            <label for="rating" class="form-label">Rating:</label>
-            <select class="form-select" name="rating">
-                {% if review.rating == 1%}
-                    <option selected>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                {% elif review.rating == 2%}
-                    <option>1</option>
-                    <option selected>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                {% elif review.rating == 3%}
-                    <option>1</option>
-                    <option>2</option>
-                    <option selected>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                {% elif review.rating == 4%}
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option selected>4</option>
-                    <option>5</option>
-                {% elif review.rating == 5%}
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option selected>5</option>
-                {% endif %}
-            </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+                    <div class="mb-3 mt-3">
+                        <label for="hiked_at" class="form-label">Date of Hike:</label>
+                        <input type="date" class="form-control" id="hiked_at" name="hiked_at" value="{{ review.hiked_at }}">
+                    </div>
+                
+                    <div class="mb-3 mt-3">
+                        <label for="description" class="form-label">Description:</label>
+                        <input type="text" class="form-control" id="description" name="description" value="{{ review.description }}">
+                    </div>
+                
+                    <div class="mb-3 mt-3">
+                        <label for="rating" class="form-label">Rating:</label>
+                        <select class="form-select" name="rating">
+                            {% if review.rating == 1%}
+                                <option selected>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            {% elif review.rating == 2%}
+                                <option>1</option>
+                                <option selected>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            {% elif review.rating == 3%}
+                                <option>1</option>
+                                <option>2</option>
+                                <option selected>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            {% elif review.rating == 4%}
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option selected>4</option>
+                                <option>5</option>
+                            {% elif review.rating == 5%}
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option selected>5</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+                <br>
+                <a href="/trail/{{review.trail.id}}" class="btn btn-secondary">Back to trail overview</a>
+            </div>
+            <div class="col-3">
+            </div>
+    </div>
 </body>
 </html>
+
+
+
+

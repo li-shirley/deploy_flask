@@ -9,7 +9,8 @@
 </head>
 
 
-<body>
+
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-success navbar-dark">
         <div class="container">
@@ -21,22 +22,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a href="/coming-soon" class="nav-link">About</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a href="/coming-soon" class="nav-link">Donate</a> 
+                        </li>
                     {% if 'user_id' in session %}
                         <li class="nav-item">
                             <a href="/logout" class="nav-link">Logout</a> 
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a href="/coming-soon" class="nav-link">About</a> 
-                        </li>
-                        <li class="nav-item">
                             <a href="/login" class="nav-link">Login</a> 
                         </li>
                         <li class="nav-item">
                             <a href="/register" class="nav-link">Register</a> 
-                        </li>
-                        <li class="nav-item">
-                            <a href="/coming-soon" class="nav-link">Donate</a> 
                         </li>
                     {% endif %}
                 </ul>
@@ -88,8 +89,13 @@
                 </div>
                 {% endfor %}
             </div> 
-            <a href="/new/trail">Add a Trail</a>  |  
-            <a href="/coming-soon">View All Trails</a>
+            <br>
+            <a class="btn btn-success" href="/coming-soon">View All Trails</a>
+            {% if 'user_id' not in session %}
+            <a class="btn btn-success" href="/login">Login to Add a Trail</a>
+            {% else %}
+            <a class="btn btn-success" href="/new/trail">Add a Trail</a>
+            {% endif %}
         </div>
     </div>
 

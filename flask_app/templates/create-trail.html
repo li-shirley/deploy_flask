@@ -8,65 +8,99 @@
     <title>Add Trail</title>
 </head>
 <body>
-    <a href="/">Home</a>
-    {% if 'user_id' in session %}
-        <a href="/logout">Logout</a> 
-        {% else %}
-        <a href="/login">Login</a> 
-    {% endif %}
-
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="Go Explore Logo" style="width:150px;"> 
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a href="/coming-soon" class="nav-link">About</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a href="/coming-soon" class="nav-link">Donate</a> 
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     
-    <h1>Add a Trail:</h1>
-    <form action="/create/trail" method="post">
-        <div class="mb-3 mt-3">
-            <label for="name" class="form-label">Trail Name:</label>
-            <input type="text" class="form-control" id="name"  name="name">
+    <div class="container">
+
+        <div class="py-5 text-center">
+            <img src="{{ url_for('static', filename='img/logo-bw.jpeg') }}" alt="Go Explore Logo" style="width:300px; margin:20px;">
+            <h2>Add a Trail</h2>
+            <p class="lead">Please provide information as acurately as possible.</p>
         </div>
 
-        <div class="mb-3 mt-3">
-            <label for="location" class="form-label">Location:</label>
-            <input type="text" class="form-control" id="location" name="location">
-        </div>
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <form action="/create/trail" method="post">
+                    <div class="mb-3 mt-3">
+                        <label for="name" class="form-label">Trail Name:</label>
+                        <input type="text" class="form-control" id="name"  name="name">
+                    </div>
 
-        <div class="mb-3 mt-3">
-            <label for="longitude" class="form-label">Longitude:</label>
-            <input type="text" class="form-control" id="longitude"  name="longitude">
-        </div>
+                    <div class="mb-3 mt-3">
+                        <label for="location" class="form-label">City:</label>
+                        <input type="text" class="form-control" id="location" name="location">
+                    </div>
 
-        <div class="mb-3 mt-3">
-            <label for="latitude" class="form-label">Latitude:</label>
-            <input type="text" class="form-control" id="latitude"  name="latitude">
-        </div>
-        <div class="mb-3 mt-3">
-            <label for="type" class="form-label">Type of Trail:</label>
-            <select class="form-select" id="type"  name="type">
-                <option value='out_and_back'>Out-and-Back</option>
-                <option value='loop'>Loop</option>
-                <option value='point_to_point'>Point-to-point</option>
-            </select>
-        </div>
+                    <div class="mb-3 mt-3">
+                        <label for="longitude" class="form-label">Longitude:</label>
+                        <input type="text" class="form-control" id="longitude"  name="longitude">
+                    </div>
 
-        <div class="mb-3 mt-3">
-            <label for="length" class="form-label">Length (miles):</label>
-            <input type="text" class="form-control" id="length"  name="length">
-        </div>
+                    <div class="mb-3 mt-3">
+                        <label for="latitude" class="form-label">Latitude:</label>
+                        <input type="text" class="form-control" id="latitude"  name="latitude">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="type" class="form-label">Type of Trail:</label>
+                        <select class="form-select" id="type"  name="type">
+                            <option value='out_and_back'>Out-and-Back</option>
+                            <option value='loop'>Loop</option>
+                            <option value='point_to_point'>Point-to-point</option>
+                        </select>
+                    </div>
 
-        <div class="mb-3 mt-3">
-            <label for="elevation_gain" class="form-label">Elevation Gain (feet):</label>
-            <input type="text" class="form-control" id="elevation_gain"  name="elevation_gain">
-        </div>
+                    <div class="mb-3 mt-3">
+                        <label for="length" class="form-label">Length (miles):</label>
+                        <input type="text" class="form-control" id="length"  name="length">
+                    </div>
 
-        <label for="time" class="form-label">Are dogs allowed?</label>
-        <div class="form-check">
-            <input type="radio" class="form-check-input" id="yes" name="dog_friendly" value="1" checked>Yes
-            <label class="form-check-label" for="1"></label>
-        </div>
-        <div class="form-check">
-            <input type="radio" class="form-check-input" id="no" name="dog_friendly" value="0">No
-            <label class="form-check-label" for="0"></label>
-        </div>
+                    <div class="mb-3 mt-3">
+                        <label for="elevation_gain" class="form-label">Elevation Gain (feet):</label>
+                        <input type="text" class="form-control" id="elevation_gain"  name="elevation_gain">
+                    </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+                    <label for="time" class="form-label">Are dogs allowed?</label>
+                    <div class="form-check">
+                        <input  type="radio" class="form-check-input" id="yes" name="dog_friendly" value="1" checked>Yes
+                        <label class="form-check-label" for="1"></label>
+                    </div>
+                    <div class="form-check">
+                        <input  type="radio" class="form-check-input" id="no" name="dog_friendly" value="0">No
+                        <label class="form-check-label" for="0"></label>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+        <div class="m-5"><br><br></div>
+    </div>
 </body>
 </html>

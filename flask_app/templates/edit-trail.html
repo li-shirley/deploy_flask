@@ -8,67 +8,106 @@
     <title>Edit Trail</title>
 </head>
 <body>
-    <a href="/">Home</a>
-    {% if 'user_id' in session %}
-        <a href="/logout">Logout</a> 
-        {% else %}
-        <a href="/login">Login</a> 
-    {% endif %}
-
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt="Go Explore Logo" style="width:150px;"> 
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a href="/coming-soon" class="nav-link">About</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a href="/coming-soon" class="nav-link">Donate</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     
-    <h1>Edit Trail:</h1>
-    <a href="/delete/trail/{{ trail.id }}">Delete trail</a>
-    <form action="/update/trail/{{trail.id}}" method="post">
-        <div class="mb-3 mt-3">
-            <label for="name" class="form-label">Trail Name:</label>
-            <input type="text" class="form-control" id="name"  name="name" value="{{ trail.name }}">
+    <div class="container">
+
+        <div class="py-5 text-center">
+            <img src="{{ url_for('static', filename='img/logo-bw.jpeg') }}" alt="Go Explore Logo" style="width:300px; margin:20px;">
+            <h2>Edit a Trail</h2>
+            <p class="lead">Please provide information as acurately as possible.</p>
         </div>
 
-        <div class="mb-3 mt-3">
-            <label for="location" class="form-label">Location:</label>
-            <input type="text" class="form-control" id="location" name="location" value="{{ trail.location }}">
-        </div>
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <a class="btn btn-success" href="/trail/{{trail.id}}">Back to trail</a>
 
-        <div class="mb-3 mt-3">
-            <label for="longitude" class="form-label">Longitude:</label>
-            <input type="text" class="form-control" id="longitude"  name="longitude" value="{{ trail.longitude }}">
-        </div>
+                <form action="/update/trail/{{trail.id}}" method="post">
+                    <div class="mb-3 mt-3">
+                        <label for="name" class="form-label">Trail Name:</label>
+                        <input type="text" class="form-control" id="name"  name="name" value="{{ trail.name }}">
+                    </div>
 
-        <div class="mb-3 mt-3">
-            <label for="latitude" class="form-label">Latitude:</label>
-            <input type="text" class="form-control" id="latitude"  name="latitude" value="{{ trail.latitude }}">
-        </div>
+                    <div class="mb-3 mt-3">
+                        <label for="location" class="form-label">Location:</label>
+                        <input type="text" class="form-control" id="location" name="location" value="{{ trail.location }}">
+                    </div>
 
-        <div class="mb-3 mt-3">
-            <label for="type" class="form-label">Type of Trail:</label>
-            <select class="form-select" id="type"  name="type" value="{{ trail.type }}">
-                <option value='out_and_back'>Out-and-Back</option>
-                <option value='loop'>Loop</option>
-                <option value='point_to_point'>Point-to-point</option>
-            </select>
-        </div>
+                    <div class="mb-3 mt-3">
+                        <label for="longitude" class="form-label">Longitude:</label>
+                        <input type="text" class="form-control" id="longitude"  name="longitude" value="{{ trail.longitude }}">
+                    </div>
 
-        <div class="mb-3 mt-3">
-            <label for="length" class="form-label">Length (miles):</label>
-            <input type="text" class="form-control" id="length"  name="length" value="{{ trail.length }}">
-        </div>
+                    <div class="mb-3 mt-3">
+                        <label for="latitude" class="form-label">Latitude:</label>
+                        <input type="text" class="form-control" id="latitude"  name="latitude" value="{{ trail.latitude }}">
+                    </div>
 
-        <div class="mb-3 mt-3">
-            <label for="elevation_gain" class="form-label">Elevation Gain (feet):</label>
-            <input type="text" class="form-control" id="elevation_gain"  name="elevation_gain" value="{{ trail.elevation_gain }}">
-        </div>
+                    <div class="mb-3 mt-3">
+                        <label for="type" class="form-label">Type of Trail:</label>
+                        <select class="form-select" id="type"  name="type" value="{{ trail.type }}">
+                            <option value='out_and_back'>Out-and-Back</option>
+                            <option value='loop'>Loop</option>
+                            <option value='point_to_point'>Point-to-point</option>
+                        </select>
+                    </div>
 
-        <label for="time" class="form-label">Are dogs allowed?</label>
-        <div class="form-check">
-            <input type="radio" class="form-check-input" id="yes" name="dog_friendly" value="1" checked>Yes
-            <label class="form-check-label" for="1"></label>
-        </div>
-        <div class="form-check">
-            <input type="radio" class="form-check-input" id="no" name="dog_friendly" value="0">No
-            <label class="form-check-label" for="0"></label>
-        </div>
+                    <div class="mb-3 mt-3">
+                        <label for="length" class="form-label">Length (miles):</label>
+                        <input type="text" class="form-control" id="length"  name="length" value="{{ trail.length }}">
+                    </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+                    <div class="mb-3 mt-3">
+                        <label for="elevation_gain" class="form-label">Elevation Gain (feet):</label>
+                        <input type="text" class="form-control" id="elevation_gain"  name="elevation_gain" value="{{ trail.elevation_gain }}">
+                    </div>
+
+                    <label for="time" class="form-label">Are dogs allowed?</label>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="yes" name="dog_friendly" value="1" checked>Yes
+                        <label class="form-check-label" for="1"></label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="no" name="dog_friendly" value="0">No
+                        <label class="form-check-label" for="0"></label>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+                <br>
+                <a href="/delete/trail/{{ trail.id }}">Delete trail</a>
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+        <div class="m-5"><br><br></div>
+    </div>
 </body>
 </html>
